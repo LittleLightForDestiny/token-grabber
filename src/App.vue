@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const authURL = `https://www.bungie.net/en-us/OAuth/Authorize?client_id=26263&response_type=code`;
+const authURL = `https://www.bungie.net/en-us/OAuth/Authorize?client_id=26154&response_type=code`;
 const getCode = () => {
   const search = window.location.search;
   const args = search.split(/[?&]/).filter((a)=>!!a).map((v)=>v.split('=')).map((v)=>({key:v[0], value:v[1]}));
@@ -11,9 +11,13 @@ const getCode = () => {
   return null;
 }
 
-const code = getCode();
+let code = getCode();
 const openOAuth = ()=>{
-  window.location.href = authURL;
+  try{
+    window.location.href = authURL;
+  }catch(e){
+    console.log(e);
+  }
 };
 </script>
 
